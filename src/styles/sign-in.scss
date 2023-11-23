@@ -1,0 +1,199 @@
+$size: 960px;
+$orange-background: rgb(249,235,234);
+$orange: rgb(235,172,168);
+$orange-inside: rgb(240,193,190);
+$orange-detail: rgb(205, 68, 59);
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1000px;
+  height: 100vh;
+  margin: 0 auto;
+  h1 {
+    height: 60px;
+    font-size: 65px;
+  }
+
+  .sign-in-extras {
+    display: flex;
+    flex-direction: column;
+    font-size: 28px;
+    color: #303030;
+    padding: 10px;
+    a, button {
+      padding: 3px;
+      &:hover {
+        font-weight: bold;
+        color: #1d5bad;
+      }
+    }
+    button {
+      text-align: left;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-in {
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto 20px auto;
+    width: 450px;
+    padding: 48px 40px 36px;
+    box-sizing: border-box;
+    // border: 1px solid #dadce0;
+    background-color: $orange;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    box-shadow: $orange-detail 0px 5px 15px;
+
+    h1 {
+      margin: 0px 0 -0.125rem;
+      padding: 0 0 35px 0;
+      color: #fff;
+      text-align: center;
+      color: $orange-detail;
+      font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .button {
+      margin: 30px 0 5px 0;
+    }
+  }
+
+  .inputBox {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      color: black;
+      font-size: 16px;
+      height: 28px;
+      margin: 1px 1px 0 1px;
+      padding: 13px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      background: transparent;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+
+      border: 2px solid rgb(205, 68, 59);
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    input::placeholder {
+      color: $orange-detail;
+      opacity: 1; /* Firefox */
+    }
+    
+    input::-ms-input-placeholder { /* Edge 12 -18 */
+      color: $orange-detail;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    label {
+      font-size: 1rem;
+      width: fit-content;
+      padding: 5px 8px;
+      color: $orange-detail;
+      font-weight: 900;
+      background-color: $orange-inside;
+      border: 2px solid $orange-detail;
+      pointer-events: none;
+      transform: translate(10px, 20px);
+      -webkit-border-radius: 13px;
+      border-radius: 13px;
+    }
+
+    .language-label {
+      font-size: 1rem;
+      width: fit-content;
+      padding: 0 8px;
+      color: grey;
+      margin: 20px 0 10px 0;
+    }
+  }
+
+  .sign-in-change {
+    margin-top: 30px;
+    color: white;
+  }
+
+  .forgotten-passowrd-text {
+    font-size: 11pt;
+    color: black;
+  }
+
+  .error {
+    height: 35px;
+    font-size: 14px;
+    padding: 5px 20px;
+    background: #FFCCCC;
+    color: #c62828;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    img {
+      height: 20px;
+      padding-right: 10px;
+    }
+  }
+
+  .hide-error {
+    height: 40px;
+  }
+
+  .form-error {
+    display: none;
+  }
+
+  .inputBox input:invalid .form-error {
+    display: flex;
+  }
+
+  @media screen and (max-width: $size) {
+    .sign-in {
+        width: 90%;
+    }
+
+    .welcome {
+      h1 {
+        min-height: 120px;
+        font-size: 50px;
+        height: unset;
+      }
+    }
+  }
+
+
+
+/* REMOVING ARROWS ON INPUTS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

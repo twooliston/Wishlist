@@ -1,0 +1,28 @@
+$orange: rgb(205, 68, 59);
+$orange-light: rgba(205, 68, 59, 0.8);
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: $orange;
+
+    nav {
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        button {
+            background-color: $orange;
+        }
+
+        button:hover {
+            background-color: $orange-light;
+        }
+    }
+
+    a {
+        padding: 10px 20px;
+    }
+}

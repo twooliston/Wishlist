@@ -1,0 +1,195 @@
+$pink: rgb(205, 59, 171);
+$orange: rgb(205, 68, 59);
+$off-pink: rgb(212, 160, 200);
+
+.wishlist-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 10px;
+    margin: 50px auto;
+    max-width: 1000px;
+    width: 100%;
+
+    background-color: $orange;
+    border-radius: 2px;
+
+    font-weight: 900;
+
+    input {
+        font-weight: 900;
+        padding: 13px 15px;
+        border: 2px solid $orange;
+        background: transparent;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input::placeholder {
+        color: $orange;
+        font-weight: 500;
+        opacity: 1; /* Firefox */
+      }
+      
+    input::-ms-input-placeholder { /* Edge 12 -18 */
+        color: $orange;
+        font-weight: 500;
+    }
+}
+
+.wishlist-table form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wish-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.wish {
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    gap: 10px;
+
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+
+    line-height: 23.5px;
+    height: 23.5px;
+}
+
+// .wish:hover {
+//     background-color: rgba(255, 255, 255, 0.65);
+// }
+
+.wish-index {
+    width: 50px;
+}
+
+.wish-name {
+    // width: 75%;
+    flex: auto;
+    text-align: left;
+    padding: 0 10px;
+
+    input {
+        width: -webkit-fill-available;
+    }
+}
+
+.wish-price {
+    width: 50px;
+
+    input {
+        width: 35px;
+    }
+}
+
+.wish-extra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+
+    input {
+        width: 125px;
+    }
+}
+
+.wish-link, .wish-link-add {
+    padding: 20px;
+}
+
+.wish-link img {
+    width: 27px;
+}
+
+.wish-link-add {
+    line-height: 23.5px;
+    height: 23.5px;
+    padding: 30px 20px;
+}
+
+.wish-link-available:hover {
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.wish-edit, .wish-delete {
+    img {
+        width: 20px;
+        height: 20px;
+    }
+    padding: 30px 20px;
+}
+
+.wish-edit:hover, .wish-delete:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 5px;
+}
+
+.vertical-separator {
+    border-left: 2px solid $off-pink;
+    height: 40px;
+}
+
+.add-wish, .add-wish-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(255, 255, 255, 0.55);
+    color: $orange;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 10px 30px;
+
+    span {
+        padding: 10px;
+    }
+}
+
+.add-wish {
+    span {
+        padding: 0 10px;
+    }
+    img {
+        height: 30px;
+    }
+}
+
+.add-wish-open {
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.add-wish:hover {
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.add-wish-close {
+    transform: rotate(45deg);
+    img {
+        width: 38px;
+    }
+}
+
+.add-wish-close:hover img {
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 25px;
+}

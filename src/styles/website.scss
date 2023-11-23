@@ -1,0 +1,302 @@
+$mobile-size: 950px;
+$orange: rgb(205, 68, 59);
+$orange-background: rgba(205, 68, 59, 0.1);
+$orange-light: rgba(205, 68, 59, 0.8);
+
+a, p, h1, h2, button, ul {
+    all: unset;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    // background-color: rgba(#ffffff, 1);
+    color: rgba(#212326, 1);
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+
+    background-color: $orange-background;
+    height: max-content;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+a {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.page-header {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+}
+
+.page {
+    max-width: $mobile-size;
+    margin: 40px auto;
+    padding: 5px;
+}
+
+.grey-out {
+    background-color: rgba(#303030, 1);
+}
+
+.alt-background {
+    background-color: rgba(#e5e7eb, 1);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+.next-background {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    background-color: white;
+    margin-top: -50px !important;
+    margin-bottom: -50px !important;
+}
+
+.shadow {
+    box-shadow: 0 10px 14px -1px rgba(0,0,0,.07), 0 4px 6px rgba(0,0,0,.08)
+}
+
+.round-edges {
+    border-radius: 8px;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 25pt;
+    color: $orange;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    font-size: 14pt;
+    line-height: 25px;
+}
+
+html button, .btn {
+    pointer-events: auto;
+    cursor: pointer;
+    background-color: $orange;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 10px 10px;
+    text-align: center;
+    
+    &:hover {
+        background-color: $orange-light;
+    }
+}
+
+.contact-btn-parent {
+    &:hover {
+        .contact-btn {
+            background-color: #1652F0;
+            color: white;
+            -webkit-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+            -moz-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+            -o-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+            -ms-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+            transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+        }
+    }
+}
+
+.contact-btn {
+    font-size: 18px;
+    color: #1652F0;
+    border: 2px solid #1652F0;
+    background-color: white;
+    padding: 5px 30px;
+    border-radius: 10px;
+    
+    -webkit-transition: background-color 0.5s ease-in-out, color 0.4s ease-in-out;
+    -moz-transition: background-color 0.5s ease-in-out, color 0.4s ease-in-out;
+    -o-transition: background-color 0.5s ease-in-out, color 0.4s ease-in-out;
+    -ms-transition: background-color 0.5s ease-in-out, color 0.4s ease-in-out;
+    transition: background-color 0.5s ease-in-out, color 0.4s ease-in-out;
+    
+    &:hover {
+        background-color: #1652F0;
+        color: white;
+        -webkit-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+        -moz-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+        -o-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+        -ms-transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+        transition: background-color 0.4s ease-in-out, color 0.3s ease-in-out;
+    }
+}
+
+.cta-btn {
+    background-color: #ffffff;
+    color: #303030;
+    width: 200px;
+    
+    &:hover {
+        background-color: rgba(#ffffff, 0.8);
+    }
+}
+
+.alt-btn {
+    background-color: #ffffff;
+    color: #303030;
+    width: 150px;
+    margin: 20px auto;
+    
+    &:hover {
+        background-color: rgba(#ffffff, 0.8);
+    }
+}
+
+.alt-back-btn {
+    margin: -45px;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    
+    &:hover {
+        background-color: rgba(#ffffff, 0.8);
+    }
+}
+
+p::after{
+    content: "\a";
+    white-space: pre;
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    margin: 100px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite ;
+}
+
+.logo-header {
+    width: 40px;
+    height: 40px;
+    // margin-right: 30px;
+    padding: 5px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.logo-body {
+    width: 100px;
+}
+
+
+.rec-carousel-wrapper {
+    .rec-carousel-item {
+        display: flex;
+        align-items: center;              
+    }
+    .rec-item-wrapper {
+        padding: 10px !important;
+
+        > div:first-of-type {
+            background-color: rgb(66 66 66);
+            border-radius: 10px;
+            padding: 10px !important;
+        }
+    }
+    .rec-arrow {
+        display: none;
+    }
+    .rec-dot {
+        background-color: white;
+        box-shadow: inset 0px 0px 1px 2px rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5) 0px 0px 1px 2px;
+    }
+    .rec-dot_active {
+        background-color: rgba(0,0,0, 0.5);
+        box-shadow: inset 0px 0px 1px 2px rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5) 0px 0px 1px 2px;
+    }
+}
+
+@keyframes rotate {
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+@media screen and (max-width: $mobile-size) {
+    .page {
+        max-width: unset;
+        margin: 0 auto;
+    }
+
+    .menu {
+        transform: translate(0, 0);
+        transition: transform 0.5s ease-in-out; // for the transition
+    }
+
+    .menu.open {
+        transform: translate(0, 260px);
+        transition: transform 0.5s ease-in-out; // for the transition
+    }
+
+    .page-header {
+        align-items: center;
+        flex-direction: column-reverse;
+        margin-top: -265px;
+
+        button {
+            background-color: rgba(48, 48, 48, 0.8);
+            width: 90%;
+        }
+
+        nav {
+            margin-bottom: 10px;
+            width: 90%;
+            a {
+                justify-content: center;
+            }
+        }
+    }
+
+    .alt-back-btn {
+        width: 40px;
+        height: 40px;
+        img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
