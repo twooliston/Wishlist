@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import {motion} from "framer-motion";
-import { auth, db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { Link } from 'react-router-dom';
 
 import Layout from "../components/Layout";
 import AuthenticationComponent from "../components/auth/AuthenticationComponent";
 
 import Request from '../components/groups/Request';
 import Group from '../components/groups/Group';
-
-import unavailable from "../assets/icons/unavailable.png";
+import PersonWishlist from '../components/groups/PersonWishlist';
 
 import "../styles/groups.scss";
-import "../styles/tickbox.scss";
 
 function Groups() {
     const [userData, setUserData] = useState(null);
@@ -22,6 +19,7 @@ function Groups() {
     const [loading, setLoading] = useState(true);
 
     const [groupWishlistData, setGroupWishlistData] = useState(null);
+    const [buyersData, setBuyersData] = useState(null)
     const [groupWishlistLoading, setGroupWishlistLoading] = useState(false);
     
     const getGroups = (data) => {
@@ -50,26 +48,40 @@ function Groups() {
             setGroupData([]);
         }
     }
+
     const getGroupWishlist = async (e, email) => {
         let checker = true;
         setGroupWishlistLoading(prev => true);
         const querySnapshot = await getDocs(collection(db, "users"));
         querySnapshot.forEach((doc) => {
-          if (email === doc.data().email) {
-            if ('wishlist' in doc.data()) {
-                setGroupWishlistData(prev => ({id: doc.id, wishlist: doc.data().wishlist, name: doc.data().name}));
-            } else {
-                setGroupWishlistData(prev => "no wishlist");
+            if (email === doc.data().email) {
+                if ('wishlist' in doc.data()) {
+                    setGroupWishlistData(prev => ({id: doc.id, data: doc.data()}));
+                    setBuyersData(prev => {
+                        return doc.data().wishlist.map((wish) => {
+                            if ('buyer' in wish) {
+                                if (wish.buyer === "" || wish.buyer === userData.data.email) {
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+                            } else {
+                                return false;
+                            }
+                        });
+                    });
+                } else {
+                    setGroupWishlistData(prev => "no wishlist");
+                }
+                setGroupWishlistLoading(prev => false);
+                checker = false;
             }
-            setGroupWishlistLoading(prev => false);
-            checker = false;
-          }
         });
         if (checker) {
             setGroupWishlistData(prev => "no account");
             setGroupWishlistLoading(prev => false);
         }
-      }
+    }
 
     useEffect(() => {
         const getCollection = async (email) => {
@@ -94,6 +106,11 @@ function Groups() {
         };
     }, []);
 
+    const handleUpdate = (updatedData) => {
+        setUserData(updatedData);
+        getGroups(updatedData().data);
+    }
+
     return (
         <Layout>
             <AuthenticationComponent>
@@ -105,16 +122,21 @@ function Groups() {
                 >
                     {loading ? <>Loading your groups...</> : (
                         <>
-                            <Request userData={userData}/>
-                            {Object.keys(groupData).length > 0 ? (
-                                <div className='groups'>
-                                    {Object.keys(groupData).map((group, i) => {
-                                        return <Group key={i} group={group} groupData={groupData[group]} getWishlist={getGroupWishlist}/>
-                                    })}
-                                </div>
-                            ) : (
-                                <>You do not have any groups</>
-                            )}
+                            <div className='groups'>
+                                {Object.keys(groupData).length > 0 ? (
+                                    <>
+                                        {Object.keys(groupData).map((group, i) => {
+                                            return <Group key={i} userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} group={group} groupData={groupData[group]} getWishlist={getGroupWishlist}/>
+                                        })}
+                                        <Request userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={false}/>
+                                    </>
+                                ) : (
+                                    <>
+                                        <>You do not have any groups</>
+                                        <Request userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={true}/>
+                                    </>
+                                )}
+                            </div>
                             {groupWishlistLoading ? <>Loading wishlist...</> : (
                                 <>
                                     {groupWishlistData === null ? (
@@ -124,40 +146,7 @@ function Groups() {
                                     ) : groupWishlistData === "no wishlist" ? (
                                         <>This account has no wishlist</>
                                     ) : (
-                                        <>
-                                            <h1>{groupWishlistData.name}'s Wishlist</h1>
-                                            <div className="outside-view">
-                                                <div className="wishlist-table">
-                                                    {groupWishlistData.wishlist.map((wish, i) => {
-                                                        return <div className="wish-row" key={i}>
-                                                            <div className="wish">
-                                                                <span className="wish-index">{i + 1}</span>
-                                                                <span className="vertical-separator"></span>
-                                                                <span className="wish-name">{wish.name}</span>
-                                                                <span className="vertical-separator"></span>
-                                                                <span className="wish-price">£{wish.price}</span>
-                                                            </div>
-                                                            {wish.link === "" ? (
-                                                                <div className="wish-extra wish-link"><img src={unavailable} alt="no link"/></div>
-                                                            ) : (
-                                                                <Link to={wish.link} className="wish-extra wish-link wish-link-available" target="_blank" rel="noopener noreferrer">link</Link>
-                                                            )}
-                                                        </div>
-                                                    })}
-                                                </div>
-                                                <div className="wishlist-table remove-choice">
-                                                    {groupWishlistData.wishlist.map((wish, i) => {
-                                                        return <div className="wish-row" key={i}>
-                                                            <div className='wish-extra select-wish'>
-                                                                <input type="checkbox" id="buy" name={i}/>
-                                                                <label for="buy">Remove choice for others</label>
-                                                            </div>
-                                                        </div>
-                                                    })}
-
-                                                </div>
-                                            </div>
-                                        </>
+                                        <PersonWishlist userEmail={userData.data.email} person={groupWishlistData} buyersData={buyersData} setGroupWishlistData={setGroupWishlistData}/>
                                     )}
                                 </>
                             )}
@@ -169,7 +158,5 @@ function Groups() {
         </Layout>
     );
 }
-
-// user={auth.currentUser.email}
 
 export default Groups;

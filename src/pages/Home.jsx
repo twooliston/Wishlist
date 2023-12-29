@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 import Layout from "../components/Layout";
 import AuthenticationComponent from "../components/auth/AuthenticationComponent";
 
-import Wishlist from '../components/Wishlist';
+import WishlistTable from '../components/wishlist/WishlistTable';
 
 function Home() {
     return (
@@ -16,13 +16,11 @@ function Home() {
                     transition={{duration: 0.25, ease: "easeOut"}}
                     exit={{opacity: 0}}
                 >
-                    <Wishlist />
+                    <WishlistTable />
                 </motion.div>
             </AuthenticationComponent>
         </Layout>
     );
 }
-
-// user={auth.currentUser.email}
 
 export default Home;

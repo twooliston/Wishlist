@@ -1,5 +1,7 @@
+$mobile-size: 950px;
 $orange: rgb(205, 68, 59);
 $orange-light: rgba(205, 68, 59, 0.8);
+$hidden-menu-height: 130px;
 
 header {
     display: flex;
@@ -24,5 +26,54 @@ header {
 
     a {
         padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: $mobile-size) {
+
+
+    .menu-button {
+        width: 95%;
+    }
+
+    header nav {
+        margin-bottom: 20px;
+        align-items: center;
+        gap: 15px;
+
+        a {
+            justify-content: center;
+        }
+        button {
+            width: 30%;
+        }
+    }
+
+    .menu {
+        transform: translate(0, 0);
+        transition: transform 0.5s ease-in-out; // for the transition
+        
+        &.open {
+            transform: translate(0, $hidden-menu-height);
+            transition: transform 0.5s ease-in-out; // for the transition
+        }
+    }
+
+    header nav a {
+        font-size: 18px;
+        padding: 0;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: -$hidden-menu-height;
+
+        nav {
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+        }
     }
 }

@@ -1,29 +1,80 @@
 $orange-detail: rgb(205, 68, 59);
 
 .request {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
     margin: auto;
     width: 300px;
     padding: 20px;
     
-    background-color: $orange;
-    border-radius: 2px;
+    background-color: $orange-detail;
+    border-radius: 20px;
 
     font-weight: 900;
+
+    label {
+        color: white;
+        text-align: left;
+        padding: 10px 0 0 15px;
+        font-size: 12px;
+    }
 
     input {
         font-weight: 900;
         padding: 13px 15px;
-        border: 2px solid $orange;
+        border: 2px solid $orange-detail;
         background: transparent;
         border-radius: 20px;
         -webkit-border-radius: 20px;
-        background-color: rgba(255, 255, 255, 0.25);
+        background-color: rgba(255, 255, 255, 0.55);
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input::placeholder {
+        color: $orange-detail;
+        font-weight: 500;
+        opacity: 1; /* Firefox */
+      }
+      
+    input::-ms-input-placeholder { /* Edge 12 -18 */
+        color: $orange-detail;
+        font-weight: 500;
     }
 
     form {
         display: flex;
         flex-direction: column;
+        width: 100%;
+
+        button {
+            margin-top: 10px;
+        }
     }
+
+    .close {
+        margin-top: -10px;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.55);
+    }
+}
+
+.edit-request button {
+    &.close {
+        margin: auto 0 0 0;
+        width: 20px;
+        padding: 5px;
+    }
+    margin: 10px auto 0 auto;
 }
 
 .groups {
@@ -39,13 +90,35 @@ $orange-detail: rgb(205, 68, 59);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 
     background-color: rgb(205, 68, 59);
     box-shadow: $orange-detail 0px 5px 15px;
     border-radius: 60px;
     width: 200px;
     padding: 10px;
+
+    .group-name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+
+        div {
+            padding: 10px;
+        }
+
+        button {
+            padding: 5px;
+            display: flex;
+        }
+        
+        img {
+            opacity: 0.5;
+            width: 30px;
+            height: 30px;
+        }
+    }
 
     h2 {
         margin-bottom: 10px;
@@ -60,6 +133,26 @@ $orange-detail: rgb(205, 68, 59);
         &:hover {
             background-color: rgba(255, 255, 255, 0.25)
         }
+    }
+}
+
+.person-edit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    color: white;
+    padding: 4px;
+
+    button {
+        width: unset;
+        padding: 0;
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
     }
 }
 
