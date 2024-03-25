@@ -2,7 +2,11 @@ import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Link } from 'react-router-dom';
 
+import PriceRange from "../modulettes/PriceRange";
+
 import unavailable from "../../assets/icons/unavailable.png";
+import amazon from "../../assets/icons/amazon.png";
+import google from "../../assets/icons/google.png";
 
 const PersonWishlist = ({userEmail, person, buyersData, setGroupWishlistData}) => {
 
@@ -37,12 +41,19 @@ const PersonWishlist = ({userEmail, person, buyersData, setGroupWishlistData}) =
                                 <span className="vertical-separator"></span>
                                 <span className="wish-name">{wish.name}</span>
                                 <span className="vertical-separator"></span>
-                                <span className="wish-price">£{wish.price}</span>
+                                <PriceRange price={wish.price} />
                             </div>
                             {wish.link === "" ? (
                                 <div className={buyersData[i] ? "wish-extra wish-link not-buyable" : "wish-extra wish-link"}><img src={unavailable} alt="no link"/></div>
                             ) : (
-                                <Link to={wish.link} className={buyersData[i] ? "wish-extra wish-link wish-link-available not-buyable" : "wish-extra wish-link wish-link-available"} target="_blank" rel="noopener noreferrer">link</Link>
+                                <Link to={wish.link} className={buyersData[i] ? "wish-extra wish-link wish-link-available not-buyable" : "wish-extra wish-link wish-link-available"} target="_blank" rel="noopener noreferrer">
+                                    {wish.link.startsWith("https://www.amazon") || wish.link.startsWith("www.amazon") ?
+                                        <img src={amazon} alt="amazon" />
+                                    :
+                                    wish.link.startsWith("https://www.google") || wish.link.startsWith("www.google") ?
+                                        <img src={google} alt="google" />
+                                    : "link"}
+                                </Link>
                             )}
                         </div>
                     })}

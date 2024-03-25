@@ -1,3 +1,4 @@
+$mobile-size: 1050px;
 $pink: rgb(205, 59, 171);
 $orange: rgb(205, 68, 59);
 $off-pink: rgb(212, 160, 200);
@@ -61,7 +62,7 @@ $off-pink: rgb(212, 160, 200);
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    padding: 20px;
     gap: 10px;
 
     background-color: rgba(255, 255, 255, 0.55);
@@ -92,9 +93,25 @@ $off-pink: rgb(212, 160, 200);
 
 .wish-price {
     width: 50px;
+    margin-right: -10px;
+    padding: 5px;
+    border-radius: 10px;
 
     input {
-        width: 35px;
+        width: 28px;
+    }
+
+    &.low-price {
+        background-color: rgba(154, 205, 50, 0.6);
+    }
+    &.med-price {
+        background-color: rgba(255, 255, 0, 0.6);
+    }
+    &.high-price {
+        background-color: rgba(255, 165, 0, 0.6);
+    }
+    &.lux-price {
+        background-color: rgba(255, 0, 0, 0.6);
     }
 }
 
@@ -111,8 +128,8 @@ $off-pink: rgb(212, 160, 200);
     }
 }
 
-.wish-link, .wish-link-add {
-    padding: 20px;
+.wish-link,  {
+    padding: 18px;
 }
 
 .wish-link img {
@@ -122,7 +139,7 @@ $off-pink: rgb(212, 160, 200);
 .wish-link-add {
     line-height: 23.5px;
     height: 23.5px;
-    padding: 30px 20px;
+    padding: 20px 18px;
 }
 
 .wish-link-available:hover {
@@ -134,7 +151,7 @@ $off-pink: rgb(212, 160, 200);
         width: 20px;
         height: 20px;
     }
-    padding: 30px 20px;
+    padding: 20px 20px;
 }
 
 .wish-edit:hover, .wish-delete:hover {
@@ -192,4 +209,12 @@ $off-pink: rgb(212, 160, 200);
 .add-wish-close:hover img {
     background-color: rgba(255, 255, 255, 0.65);
     border-radius: 25px;
+}
+
+
+@media screen and (max-width: $mobile-size) {
+    .wishlist-table {
+        width: unset;
+        max-width: 500px;
+    }
 }

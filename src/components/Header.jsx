@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header>
-      {width <= 950 ? (
+      {width <= 1050 ? (
         <>
           <nav onClick={() => setMenu(!menu)}>
             <Link to={"/"}>My Wishlist</Link>

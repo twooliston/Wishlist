@@ -1,10 +1,10 @@
 import { db } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
-import { Link } from "react-router-dom";
 
 import bin from "../../assets/icons/bin.png";
 import edit from "../../assets/icons/edit.png";
-import unavailable from "../../assets/icons/unavailable.png";
+import WishLinks from "../modulettes/WishLinks";
+import PriceRange from "../modulettes/PriceRange";
 
 const WishlistRow = ({wish, i, userData, setUserData, openEdit}) => {
 
@@ -28,13 +28,9 @@ const WishlistRow = ({wish, i, userData, setUserData, openEdit}) => {
                 <span className="vertical-separator"></span>
                 <span className="wish-name">{wish.name}</span>
                 <span className="vertical-separator"></span>
-                <span className="wish-price">£{wish.price}</span>
+                <PriceRange price={wish.price} />
             </div>
-            {wish.link === "" ? (
-                <div className="wish-extra wish-link"><img src={unavailable} alt="no link"/></div>
-            ) : (
-                <Link to={wish.link} className="wish-extra wish-link wish-link-available" target="_blank" rel="noopener noreferrer">link</Link>
-            )}
+            <WishLinks link={wish.link} />
             <div className="wish-extra">
                 <span className="wish-edit" onClick={() => openEdit(i)}><img src={edit} alt="edit"/></span>
                 <span className="vertical-separator"></span>

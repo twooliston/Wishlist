@@ -86,6 +86,12 @@ $orange-detail: rgb(205, 68, 59);
     margin: 60px;
 }
 
+.no-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .group {
     display: flex;
     flex-direction: column;

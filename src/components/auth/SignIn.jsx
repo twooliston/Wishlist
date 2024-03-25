@@ -29,6 +29,7 @@ const SignIn = () => {
       ...form,
       [e.target.name]: e.target.value,
     }))
+    if (showError) setShowError(false);
   }
 
   return (

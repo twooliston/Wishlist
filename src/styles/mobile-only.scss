@@ -1,0 +1,86 @@
+.wish-row-mobile {
+    // margin: 0 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.55);
+    color: rgb(205, 68, 59);
+    border-radius: 5px;
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+
+    min-height: 154.5px;
+
+    .wish-name {
+        align-content: center;
+    }
+}
+
+.wish-moblie-aux {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.6);
+    gap: 10px;
+
+    .wish-price {
+        margin-right: unset;
+    }
+
+    .wish-link {
+        background-color: rgba(255, 255, 255, 0.2);
+        width: 27px;
+        padding: 15px;
+    }
+}
+
+.wish-edit-mobile {
+    -webkit-transform: rotate(90deg);     /* Chrome and other webkit browsers */
+    -moz-transform: rotate(90deg);        /* FF */
+    -o-transform: rotate(90deg);          /* Opera */
+    -ms-transform: rotate(90deg);         /* IE9 */
+    transform: rotate(90deg);             /* W3C compliant browsers */
+
+    img {
+        width: 20px;
+        padding: 10px;
+        opacity: 0.6;
+        margin-left: -10px;
+
+        &.close {
+            width: 30px;
+        }
+    }
+}
+
+.edit-popup {
+    margin-top: -25px;
+    color: black;
+    opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    div {
+        padding: 5px;
+    }
+}
+
+.form-mobile {
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.55);
+
+    button {
+        background-color: rgba(255, 255, 255, 0.3);
+        margin-top: 10px;
+    }
+}
+
+.add-wish-mobile {
+    // margin: 0 10px;
+}

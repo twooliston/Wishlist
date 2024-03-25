@@ -107,7 +107,9 @@ function Groups() {
     }, []);
 
     const handleUpdate = (updatedData) => {
-        setUserData(updatedData);
+        let newData = {...userData};
+        newData.data.relationships = updatedData().data.relationships;
+        setUserData(prev => ({...newData}));
         getGroups(updatedData().data);
     }
 
@@ -131,10 +133,10 @@ function Groups() {
                                         <Request userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={false}/>
                                     </>
                                 ) : (
-                                    <>
+                                    <div className='no-groups'>
                                         <>You do not have any groups</>
                                         <Request userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={true}/>
-                                    </>
+                                    </div>
                                 )}
                             </div>
                             {groupWishlistLoading ? <>Loading wishlist...</> : (
