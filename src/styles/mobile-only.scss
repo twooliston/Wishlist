@@ -2,9 +2,11 @@
     // margin: 0 10px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.55);
-    color: rgb(205, 68, 59);
+    // color: rgb(205, 68, 59);
+    color: #000;
     border-radius: 5px;
     font-size: 20px;
+    margin: 5px 15px;
 
     display: flex;
     flex-direction: row;
@@ -12,6 +14,8 @@
     align-items: stretch;
 
     min-height: 154.5px;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
     .wish-name {
         align-content: center;
@@ -83,4 +87,75 @@
 
 .add-wish-mobile {
     // margin: 0 10px;
+}
+
+// Groups
+
+.buyer-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+    // background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.buyer-aux {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+
+    .wish-price {
+        margin-right: unset;
+    }
+
+    a, button, div {
+        align-content: center;
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 5px;
+        color: #000;
+        font-weight: 600;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        span {
+            align-content: center;
+        }
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.wish-reserved {
+    background-color: rgb(189, 230, 163);
+}
+
+.reserve-box {
+    border: 1px solid #000;
+    opacity: 0.3;
+    position: absolute;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-top: -5px;
+    margin-left: -5px;
 }

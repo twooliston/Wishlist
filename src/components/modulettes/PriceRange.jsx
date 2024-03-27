@@ -1,6 +1,6 @@
 
 const PriceRange = ({price}) => {
-    return (<span className={
+    return (<div className={
       price < 40 ?
           "wish-price low-price"
       : price >= 200 ?
@@ -11,7 +11,7 @@ const PriceRange = ({price}) => {
           "wish-price med-price"
     }>
         £{price}
-    </span>);
+    </div>);
   };
   
   export default PriceRange;
