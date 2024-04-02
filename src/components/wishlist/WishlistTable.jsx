@@ -12,6 +12,8 @@ import EditWishMobile from "./EditWishMobile";
 import WishlistRow from "./WishlistRow";
 import WishlistRowMobile from "./WishlistRowMobile";
 
+import LoadingAnimation from "../modulettes/LoadingAnimation";
+
 import "../../styles/wishlist.scss";
 
 const WishlistTable = () => {
@@ -49,15 +51,10 @@ const WishlistTable = () => {
 
     return (
         <>
-        {loading ? <>Loading your wishlist...</> : (
+        {loading ? <LoadingAnimation /> : (
             <div>
                 <h1>Your Wishlist</h1>
                 <div className="wishlist-table">
-                    {width <= 1050 ? (
-                        <AddWishMobile userData={userData} setUserData={setUserData} />
-                    ) : (
-                        <AddWish userData={userData} setUserData={setUserData} />
-                    )}
                     {'wishlist' in userData.data && userData.data.wishlist.map((wish, i) => {
                         return <React.Fragment key={i}>
                             {editWish === i ? (
@@ -79,6 +76,11 @@ const WishlistTable = () => {
                             )}
                         </React.Fragment>
                     })}
+                    {width <= 1050 ? (
+                        <AddWishMobile userData={userData} setUserData={setUserData} />
+                    ) : (
+                        <AddWish userData={userData} setUserData={setUserData} />
+                    )}
                 </div>
             </div>
         )}

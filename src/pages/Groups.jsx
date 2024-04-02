@@ -4,20 +4,18 @@ import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { useStateContext } from '../context/StateContext';
-
 import Layout from "../components/Layout";
 import AuthenticationComponent from "../components/auth/AuthenticationComponent";
 
 import Request from '../components/groups/Request';
 import Group from '../components/groups/Group';
 import PersonWishlist from '../components/groups/PersonWishlist';
-import PersonWishlistMobile from '../components/groups/PersonWishlistMobile';
+
+import LoadingAnimation from '../components/modulettes/LoadingAnimation';
 
 import "../styles/groups.scss";
 
 function Groups() {
-    const { width } = useStateContext();
     const [userData, setUserData] = useState(null);
     const [groupData, setGroupData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -126,7 +124,7 @@ function Groups() {
                     transition={{duration: 0.25, ease: "easeOut"}}
                     exit={{opacity: 0}}
                 >
-                    {loading ? <>Loading your groups...</> : (
+                    {loading ? <LoadingAnimation /> : (
                         <>
                             <div className='groups'>
                                 {Object.keys(groupData).length > 0 ? (
@@ -143,7 +141,7 @@ function Groups() {
                                     </div>
                                 )}
                             </div>
-                            {groupWishlistLoading ? <>Loading wishlist...</> : (
+                            {groupWishlistLoading ? <LoadingAnimation /> : (
                                 <>
                                     {groupWishlistData === null ? (
                                         <>Select a person to see their wishlist!</>
@@ -152,13 +150,7 @@ function Groups() {
                                     ) : groupWishlistData === "no wishlist" ? (
                                         <>This account has no wishlist</>
                                     ) : (
-                                        <>
-                                            {width <= 1050 ? 
-                                                <PersonWishlistMobile userEmail={userData.data.email} person={groupWishlistData} buyersData={buyersData} setGroupWishlistData={setGroupWishlistData}/>
-                                                :
-                                                <PersonWishlist userEmail={userData.data.email} person={groupWishlistData} buyersData={buyersData} setGroupWishlistData={setGroupWishlistData}/>
-                                            }
-                                        </>
+                                        <PersonWishlist userEmail={userData.data.email} person={groupWishlistData} buyersData={buyersData} setGroupWishlistData={setGroupWishlistData}/>
                                     )}
                                 </>
                             )}

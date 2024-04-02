@@ -1,14 +1,13 @@
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { Link } from 'react-router-dom';
+import { useStateContext } from "../../context/StateContext";
 
 import PriceRange from "../modulettes/PriceRange";
-
-import unavailable from "../../assets/icons/unavailable.png";
-import amazon from "../../assets/icons/amazon.png";
-import google from "../../assets/icons/google.png";
+import WishLinks from "../modulettes/WishLinks";
+import ReserveButton from "../modulettes/ReserveButton";
 
 const PersonWishlist = ({userEmail, person, buyersData, setGroupWishlistData}) => {
+    const { width } = useStateContext();
 
     const removeWish = async (e, i) => {
         let newWishlist = [...person.data.wishlist];
@@ -35,39 +34,36 @@ const PersonWishlist = ({userEmail, person, buyersData, setGroupWishlistData}) =
             <div className="outside-view">
                 <div className="wishlist-table">
                     {person.data.wishlist.map((wish, i) => {
-                        return <div className={'buyer' in wish && wish.buyer !== "" ? "wish-row crossed-out" : "wish-row"} key={i}>
-                            <div className={buyersData[i] ? "wish not-buyable" : "wish"}>
-                                <span className="wish-index">{i + 1}</span>
-                                <span className="vertical-separator"></span>
-                                <span className="wish-name">{wish.name}</span>
-                                <span className="vertical-separator"></span>
-                                <PriceRange price={wish.price} />
-                            </div>
-                            {wish.link === "" ? (
-                                <div className={buyersData[i] ? "wish-extra wish-link not-buyable" : "wish-extra wish-link"}><img src={unavailable} alt="no link"/></div>
-                            ) : (
-                                <Link to={wish.link} className={buyersData[i] ? "wish-extra wish-link wish-link-available not-buyable" : "wish-extra wish-link wish-link-available"} target="_blank" rel="noopener noreferrer">
-                                    {wish.link.startsWith("https://www.amazon") || wish.link.startsWith("www.amazon") ?
-                                        <img src={amazon} alt="amazon" />
-                                    :
-                                    wish.link.startsWith("https://www.google") || wish.link.startsWith("www.google") ?
-                                        <img src={google} alt="google" />
-                                    : "link"}
-                                </Link>
-                            )}
+                        return <div
+                            className={'buyer' in wish && wish.buyer !== ""
+                                ? (buyersData[i] ? "wish-row not-buyable" : "wish-row wish-reserved")
+                                : "wish-row"
+                            }
+                            key={i}
+                        >
+                            {width <= 1050 ? <>
+                                <div className="reserve-box">
+                                    {'buyer' in wish && wish.buyer !== "" ?  "Reserved" : "Available"}
+                                </div>
+                                <div className={buyersData[i] ? "buyer-mobile" : "buyer-mobile"}>
+                                    <div>{wish.name}</div>
+                                    <div className="buyer-aux">
+                                        <PriceRange price={wish.price} />
+                                        <WishLinks link={wish.link} />
+                                        <ReserveButton wish={wish} hasBeenBought={buyersData[i]} removeWish={removeWish} i={i} />
+                                    </div>
+                                </div>
+                            </> : <>
+                                <div className={buyersData[i] ? "wish" : "wish"}>
+                                    <span className="wish-index">{i + 1}</span>
+                                    <span className="wish-name">{wish.name}</span>
+                                    <PriceRange price={wish.price} />
+                                </div>
+                                <WishLinks link={wish.link} />
+                                <ReserveButton wish={wish} hasBeenBought={buyersData[i]} removeWish={removeWish} i={i} />
+                            </>}
                         </div>
                     })}
-                </div>
-                <div className="wishlist-table remove-choice">
-                    {person.data.wishlist.map((wish, i) => {
-                        return <div className="wish-row" key={i}>
-                            <div className={buyersData[i] ? "wish-extra select-wish not-buyable" : "wish-extra select-wish"}>
-                                <input type="checkbox" name={i} defaultChecked={'buyer' in wish && wish.buyer !== ""} onClick={(e) => removeWish(e, i)}/>
-                                <label>Remove choice for others</label>
-                            </div>
-                        </div>
-                    })}
-
                 </div>
             </div>
         </>

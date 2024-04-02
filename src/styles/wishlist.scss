@@ -50,12 +50,6 @@ $off-pink: rgb(212, 160, 200);
     gap: 10px;
 }
 
-.wish-row {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
 .wish {
     display: flex;
     flex: auto;
@@ -72,16 +66,11 @@ $off-pink: rgb(212, 160, 200);
     height: 23.5px;
 }
 
-// .wish:hover {
-//     background-color: rgba(255, 255, 255, 0.65);
-// }
-
 .wish-index {
     width: 50px;
 }
 
 .wish-name {
-    // width: 75%;
     flex: auto;
     text-align: left;
     padding: 0 10px;
@@ -128,7 +117,7 @@ $off-pink: rgb(212, 160, 200);
     }
 }
 
-.wish-link,  {
+.wish-link  {
     padding: 18px;
 }
 
@@ -211,10 +200,44 @@ $off-pink: rgb(212, 160, 200);
     border-radius: 25px;
 }
 
+@media screen and (min-width: $mobile-size) {
+
+    .wish-row {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+
+}
 
 @media screen and (max-width: $mobile-size) {
+    
+    .wish-row {
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.55);
+        color: #000;
+        border-radius: 5px;
+        font-size: 20px;
+        margin: 2px 0px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+
+        min-height: 154.5px;
+
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+        .wish-name {
+            align-content: center;
+        }
+    }
+
     .wishlist-table {
         width: unset;
         max-width: 500px;
     }
+
 }

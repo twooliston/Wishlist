@@ -3,6 +3,8 @@ import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate } from 'react-router-dom'
 
+import LoadingAnimation from "../modulettes/LoadingAnimation";
+
 const AuthenticationComponent = ({children}) => {
     const [loading, setLoading] = useState(true);
     const [authUser, setAuthUser] = useState(null);
@@ -24,7 +26,7 @@ const AuthenticationComponent = ({children}) => {
 
   return (
     <>
-      {loading ? <>Loading...</> : (
+      {loading ? <LoadingAnimation /> : (
         <>
           {authUser ? (
             <>{children}</>

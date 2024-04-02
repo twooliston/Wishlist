@@ -25,15 +25,12 @@ const WishlistRow = ({wish, i, userData, setUserData, openEdit}) => {
         <div className="wish-row" key={i}>
             <div className="wish">
                 <span className="wish-index">{i + 1}</span>
-                <span className="vertical-separator"></span>
                 <span className="wish-name">{wish.name}</span>
-                <span className="vertical-separator"></span>
                 <PriceRange price={wish.price} />
             </div>
             <WishLinks link={wish.link} />
             <div className="wish-extra">
                 <span className="wish-edit" onClick={() => openEdit(i)}><img src={edit} alt="edit"/></span>
-                <span className="vertical-separator"></span>
                 <span className="wish-delete" onClick={(e) => deleteWish(e, i)}><img src={bin} alt="bin"/></span>
             </div>
         </div>

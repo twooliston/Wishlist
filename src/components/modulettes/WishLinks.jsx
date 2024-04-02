@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import unavailable from "../../assets/icons/unavailable.png";
 import amazon from "../../assets/icons/amazon.png";
 import google from "../../assets/icons/google.png";
+import web from "../../assets/icons/web.png";
 
 const WishLinks = ({link}) => {
     return (<>
@@ -15,7 +16,7 @@ const WishLinks = ({link}) => {
                 :
                 link.startsWith("https://www.google") || link.startsWith("www.google") ?
                     <img src={google} alt="google" />
-                : "link"}
+                : <img src={web} alt="web" />}
             </Link>
         )}
     </>);

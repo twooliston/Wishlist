@@ -60,9 +60,7 @@ const AddWish = ({userData, setUserData}) => {
                     <div className="wish-row">
                         <div className="wish" target="_blank" rel="noopener noreferrer">
                             <span className="wish-index add-wish-close" onClick={cancelAddForm}><img src={add_orange} alt="close" /></span>
-                            <span className="vertical-separator"></span>
                             <span className="wish-name"><input onChange={handleAdd} placeholder="enter the name" name="name" type="text" required/></span>
-                            <span className="vertical-separator"></span>
                             <span className="wish-price"><input onChange={handleAdd} placeholder="price" name="price" type="number" required/></span>
                         </div>
                         <div className="wish-extra wish-link-add"><input onChange={handleAdd} placeholder="add a link" name="link" type="text"/></div>

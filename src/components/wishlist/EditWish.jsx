@@ -34,9 +34,7 @@ const EditWish = ({wish, i, setEditWish, userData, setUserData}) => {
             <div className="wish-row">
                 <div className="wish" target="_blank" rel="noopener noreferrer">
                     <span className="wish-index add-wish-close" onClick={() => setEditWish(prev => null)}><img src={add_orange} alt="close" /></span>
-                    <span className="vertical-separator"></span>
                     <span className="wish-name"><input onChange={handleEdit} placeholder="enter the name" name="name" type="text" defaultValue={wish.name} required/></span>
-                    <span className="vertical-separator"></span>
                     <span className="wish-price"><input onChange={handleEdit} placeholder="price" name="price" type="number" defaultValue={wish.price} required/></span>
                 </div>
                 <div className="wish-extra wish-link-add"><input onChange={handleEdit} placeholder="add a link" name="link" defaultValue={wish.link} type="text"/></div>
