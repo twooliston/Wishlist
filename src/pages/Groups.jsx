@@ -17,6 +17,7 @@ import "../styles/groups.scss";
 
 function Groups() {
     const [userData, setUserData] = useState(null);
+    const [userList, setUserList] = useState(null);
     const [groupData, setGroupData] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -33,19 +34,20 @@ function Groups() {
                         ...groups,
                         [data.relationships[i].group]: [{
                             index: i,
-                            name: data.relationships[i].name,
+                            first_name: data.relationships[i].first_name,
                             email: data.relationships[i].email,
                         }]
                     }
                 } else {
                     groups[data.relationships[i].group].push({
                         index: i,
-                        name: data.relationships[i].name,
+                        first_name: data.relationships[i].first_name,
                         email: data.relationships[i].email,
                     })
                 }
             }
             setGroupData(prev => groups);
+            // todo => get correct list of users for adding
         } else {
             setGroupData([]);
         }
@@ -87,14 +89,18 @@ function Groups() {
 
     useEffect(() => {
         const getCollection = async (email) => {
+            let tempUserList = [];
             const querySnapshot = await getDocs(collection(db, "users"));
             querySnapshot.forEach((doc) => {
-              if (email === doc.data().email) {
-                setUserData(prev => ({id: doc.id, data: doc.data()}));
-                getGroups(doc.data());
-                setLoading(prev => false);
-              }
+                if (email === doc.data().email) {
+                    setUserData(prev => ({id: doc.id, data: doc.data()}));
+                    getGroups(doc.data());
+                    setLoading(prev => false);
+                } else {
+                    tempUserList.push(doc.data());
+                }
             });
+            setUserList(prev => tempUserList);
           }
   
         const listen = onAuthStateChanged(auth, (user) => {
@@ -132,12 +138,12 @@ function Groups() {
                                         {Object.keys(groupData).map((group, i) => {
                                             return <Group key={i} userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} group={group} groupData={groupData[group]} getWishlist={getGroupWishlist}/>
                                         })}
-                                        <Request userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={false}/>
+                                        <Request allUsers={userList}  userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={false}/>
                                     </>
                                 ) : (
                                     <div className='no-groups'>
                                         <>You do not have any groups</>
-                                        <Request userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={true}/>
+                                        <Request allUsers={userList} userData={userData} setUserData={(updatedData) => handleUpdate(updatedData)} empty={true}/>
                                     </div>
                                 )}
                             </div>

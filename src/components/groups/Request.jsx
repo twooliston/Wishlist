@@ -1,16 +1,15 @@
 import { useState } from "react"
 
-import EditMember from "./EditMember";
-
 import add from "../../assets/icons/add-orange.png";
+import Suggested from "./Suggested";
 
-const Request = ({ userData, setUserData, empty }) => {
+const Request = ({ allUsers, userData, setUserData, empty }) => {
     const [requestButton, setRequestButton] = useState(false);
 
     return (
         <>
             {requestButton ? (
-                <EditMember userData={userData} setUserData={setUserData} formData={{name: "", email: "", group: ""}} group={null} handleClose={() => setRequestButton(prev => false)} />
+                <Suggested allUsers={allUsers} userData={userData} setUserData={setUserData} handleClose={() => setRequestButton(prev => false)} />
             ) : (
                 <>
                     { empty ? (

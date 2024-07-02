@@ -7,7 +7,8 @@ import FormInput from "../forms/FormInput";
 const SignUp = () => {
   const [showError, setShowError] = useState(false);
   const [form, setForm] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     confirm_password: "",
@@ -21,11 +22,12 @@ const SignUp = () => {
     }))
   }
 
-  const createCollection = async (email, name) => {
+  const createCollection = async (email, first_name, last_name) => {
     try {
       await addDoc(collection(db, "users"), {
         email,
-        name,
+        first_name,
+        last_name,
       });
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -39,7 +41,7 @@ const SignUp = () => {
     } else {
       createUserWithEmailAndPassword(auth, form.email, form.password)
         .then((userCredential) => {
-          createCollection(form.email, form.name);
+          createCollection(form.email, form.first_name, form.last_name);
         })
         .catch((error) => {
           console.log(error);
@@ -51,7 +53,8 @@ const SignUp = () => {
     <div  className="box">
       <form onSubmit={signUp}>
         <h1>Create Account</h1>
-        <FormInput field="name" handleChange={handleChange} />
+        <FormInput field="first_name" handleChange={handleChange} />
+        <FormInput field="last_name" handleChange={handleChange} />
         <FormInput field="email" handleChange={handleChange} />
         <FormInput field="password" handleChange={handleChange} />
         <FormInput field="password" placeholder="Confirm your password" name="confirm password" handleChange={handleChange} errorMessage="passwords do not match" showError={showError}/>

@@ -30,7 +30,7 @@ const PersonWishlist = ({userEmail, person, buyersData, setGroupWishlistData}) =
 
     return (
         <>
-            <h1>{person.data.name}'s Wishlist</h1>
+            <h1>{person.data.first_name}'s Wishlist</h1>
             <div className="outside-view">
                 <div className="wishlist-table">
                     {person.data.wishlist.map((wish, i) => {

@@ -3,7 +3,7 @@ import red_warning from "../../assets/icons/red-warning.png"
 const FormInput = ({field, handleChange, name = field, placeholder = null, errorMessage = null, showError}) => {
   return (
     <div className="inputBox">
-        <label>{name}</label>
+        <label>{name.replace("_", " ")}</label>
         <input
         name={name.replace(" ", "_")}
         type={field}
