@@ -32,7 +32,7 @@ const EditWish = ({wish, i, setEditWish, userData, setUserData}) => {
     return (
         <form className="form-mobile" onSubmit={(e) => editWishlist(e, i)} key={i}>
             <div className="wish-index add-wish-close" onClick={() => setEditWish(prev => null)}><img src={add_orange} alt="close" /></div>
-            <input onChange={handleEdit} placeholder="enter the name" name="name" type="text" defaultValue={wish.name} required/>
+            <input onChange={handleEdit} placeholder="enter your wish (don't forget size, colour, etc..)" name="name" type="text" defaultValue={wish.name} required/>
             <input onChange={handleEdit} placeholder="price" name="price" type="number" defaultValue={wish.price} required/>
             <input onChange={handleEdit} placeholder="add a link" name="link" defaultValue={wish.link} type="text"/>
             <button type="submit" name="editWishlist" className="add-wish save-wish">

@@ -58,7 +58,7 @@ const AddWish = ({userData, setUserData}) => {
             {addWish ? (
                 <form className="form-mobile" onSubmit={addToWishlist}>
                     <span className="wish-index add-wish-close" onClick={cancelAddForm}><img src={add_orange} alt="close" /></span>
-                    <input onChange={handleAdd} placeholder="enter the name" name="name" type="text" required/>
+                    <input onChange={handleAdd} placeholder="enter your wish (don't forget size, colour, etc..)" name="name" type="text" required/>
                     <input onChange={handleAdd} placeholder="price" name="price" type="number" required/>
                     <input onChange={handleAdd} placeholder="add a link" name="link" type="text"/>
                     <button type="submit" name="addToWishlist" className="add-wish save-wish">
